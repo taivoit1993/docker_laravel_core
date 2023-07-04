@@ -5,9 +5,6 @@ namespace Domains\Authentication\Actions;
 use Domains\Authentication\Tasks\CallOAuthServerTask;
 use Domains\Shared\Actions\Action;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class UserLoginAction extends Action
 {
@@ -17,6 +14,9 @@ class UserLoginAction extends Action
         $password = $request->password ?? null;
 
         $response = app(CallOAuthServerTask::class)->run($email, $password);
+        if(array_key_exists("error",$response)){
+            return $this->sendError($response['error'],[$response['message']],401)->send();
+        }
         return $response;
     }
 }

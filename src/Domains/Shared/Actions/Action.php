@@ -1,5 +1,7 @@
 <?php
 namespace Domains\Shared\Actions;
-abstract class Action{
+use Domains\Shared\Data\Trait\ResponseTrait;
 
+abstract class Action{
+    use ResponseTrait;
 }
