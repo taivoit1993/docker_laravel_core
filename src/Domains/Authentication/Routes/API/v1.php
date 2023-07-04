@@ -16,3 +16,12 @@ Route::prefix('api/v1')->as('api:v1:')->group(function(){
         Route::post('/register',[UserController::class,"userRegister"])->name('register');
     });
 });
+
+
+Route::group([
+    'as' => 'passport.',
+    'prefix' => config('passport.path', 'oauth'),
+    'namespace' => '\Laravel\Passport\Http\Controllers',
+], function () {
+    // Passport routes...
+});

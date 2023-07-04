@@ -18,7 +18,7 @@ class CoreController extends BaseController
             'data' => $result,
             'message' => $message
         ];
-        return $response()->json($response, 200);
+        return response()->json($response, 200);
     }
 
     /**

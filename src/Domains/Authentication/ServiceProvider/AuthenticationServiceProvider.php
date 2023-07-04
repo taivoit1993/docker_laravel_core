@@ -5,6 +5,7 @@ use Domains\Authentication\Data\Repositories\Implement\UserRepository;
 use Domains\Authentication\Data\Repositories\Interface\UserRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AuthenticationServiceProvider extends ServiceProvider
 {
@@ -16,8 +17,9 @@ class AuthenticationServiceProvider extends ServiceProvider
         $this->app->register(
             provider: AuthenticationServiceProvider::class,
         );
-
+        Passport::ignoreRoutes();
         $this->registerRoutes();
+
     }
 
     /**
@@ -32,8 +34,6 @@ class AuthenticationServiceProvider extends ServiceProvider
 
     public function register()
     {
-        app('config')
-            ->set('custom', require app_path('/../Domains/Authentication/Configs/config.php'));
         //Register User Repositories
         $this->app->singleton(
             UserRepositoryInterface::class,
