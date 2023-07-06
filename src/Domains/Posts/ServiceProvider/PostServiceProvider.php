@@ -1,12 +1,12 @@
 <?php
-namespace Domains\Authentication\ServiceProvider;
+namespace Domains\Posts\ServiceProvider;
 
 use Domains\Authentication\Data\Repositories\Implement\UserRepository;
 use Domains\Authentication\Data\Repositories\Interface\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
-class AuthenticationServiceProvider extends ServiceProvider
+class PostServiceProvider extends ServiceProvider
 {
     /**
      * @return void
@@ -14,7 +14,7 @@ class AuthenticationServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->register(
-            provider: AuthenticationServiceProvider::class,
+            provider: PostServiceProvider::class,
         );
         Passport::ignoreRoutes();
         $this->registerRoutes();

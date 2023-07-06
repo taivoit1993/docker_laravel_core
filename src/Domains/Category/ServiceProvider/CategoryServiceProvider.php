@@ -1,12 +1,13 @@
 <?php
-namespace Domains\Authentication\ServiceProvider;
 
-use Domains\Authentication\Data\Repositories\Implement\UserRepository;
-use Domains\Authentication\Data\Repositories\Interface\UserRepositoryInterface;
+namespace Domains\Category\ServiceProvider;
+
+use Domains\Category\Data\Repositories\Implement\CategoryRepository;
+use Domains\Category\Data\Repositories\Interface\CategoryRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
-class AuthenticationServiceProvider extends ServiceProvider
+class CategoryServiceProvider extends ServiceProvider
 {
     /**
      * @return void
@@ -14,7 +15,7 @@ class AuthenticationServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->register(
-            provider: AuthenticationServiceProvider::class,
+            provider: CategoryServiceProvider::class,
         );
         Passport::ignoreRoutes();
         $this->registerRoutes();
@@ -35,8 +36,8 @@ class AuthenticationServiceProvider extends ServiceProvider
     {
         //Register User Repositories
         $this->app->singleton(
-            UserRepositoryInterface::class,
-            UserRepository::class
+            CategoryRepositoryInterface::class,
+            CategoryRepository::class
         );
     }
 }
